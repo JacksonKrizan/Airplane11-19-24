@@ -12,6 +12,8 @@ public class PlayerScript : MonoBehaviour
     public float health;
     public float healthDeath;
     public float JumpForce;
+    public int bomberkilled;
+
     BomberPassed bomberAlert;
 
     [SerializeField] GameObject DeathScreen;
@@ -22,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D RB;
     public Text ScoreTxt;
     public Text HealthTxt;
+    public Text killedBombersTxt;
 
     private void Start()
     {
@@ -42,12 +45,12 @@ public class PlayerScript : MonoBehaviour
            Debug.Log(bomberAlert.bomberAtBase);
 
             HealthTxt.text = health.ToString("F0");
-
+            killedBombersTxt.text = bomberkilled.ToString("F0");
 
             if(Input.GetKey(KeyCode.W))
             {
 
-                RB.AddForce(Vector2.up * JumpForce);
+                RB.AddForce(Vector2.up * JumpForce * Time.deltaTime);
 
 
             }
@@ -55,7 +58,7 @@ public class PlayerScript : MonoBehaviour
             if(Input.GetKey(KeyCode.S))
             {
 
-                RB.AddForce(Vector2.down * JumpForce);
+                RB.AddForce(Vector2.down * JumpForce * Time.deltaTime);
 
 
             }
@@ -63,12 +66,12 @@ public class PlayerScript : MonoBehaviour
 
             if(Input.GetKey(KeyCode.D))
             {
-                RB.AddForce(Vector2.right * RunSpeed);
+                RB.AddForce(Vector2.right * RunSpeed * Time.deltaTime);
             }
 
             if(Input.GetKey(KeyCode.A))
             {
-                RB.AddForce(Vector2.left * RunSpeed);
+                RB.AddForce(Vector2.left * RunSpeed * Time.deltaTime);
             }
 
             if(isAlive)

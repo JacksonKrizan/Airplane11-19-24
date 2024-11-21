@@ -28,7 +28,7 @@ public class AmmoBox : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Player"))
         {
-            addBullets.bulletCount += 25;
+            addBullets.bulletCount += 10;
             
             Destroy(this.gameObject);
             

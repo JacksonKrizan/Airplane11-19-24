@@ -6,17 +6,19 @@ public class Bomber : MonoBehaviour
 {
     Rigidbody2D RB;
     public float bomberSpeed;
+    public PlayerScript killed;
     //public int bomberAtBase;
 
 
     private void Awake()
     {
+        killed = FindObjectOfType<PlayerScript>();
         RB = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        RB.AddForce(Vector2.left * bomberSpeed);
+        RB.AddForce(Vector2.left * bomberSpeed * Time.deltaTime);
         
 
     }
@@ -25,6 +27,7 @@ public class Bomber : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            killed.bomberkilled += 1;
             Destroy(this.gameObject);
 
         }
